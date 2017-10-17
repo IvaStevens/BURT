@@ -1,11 +1,11 @@
-## Specification file
+# Specification file
 # sends a message of new trial specific details, on send
 
 # reward amount
 # reward occurance
 # pause time
 # trial number
-# repition number
+# repetition number
 # force vector
 # directions
 # distances to force targets
@@ -16,31 +16,41 @@
 
 
 # getting yaml data into python
+import os
+import sys
+import math
 import yaml
+from PyDragonfly import Dragonfly_Module, CMessage, copy_to_msg, copy_from_msg, read_msg_data, MT_EXIT
+from dragonfly_utils import respond_to_ping
+import Dragonfly_config as config
+
 with open('filename.yaml') as yamlFile:
   data = yaml.safe_load(yamlFile)
 
 
-#saving yaml data
+# Saving yaml data
 with open('filename.yaml') as yamlFile:
   yaml.dump(data, yamlFile)
 
+# Main class, manages sending appropriate updates when necessary
 class Experiment(object):
   def __init__(self, *data, **kwargs):
-      for dictionary in data:
-          for key in dictionary:
-              setattr(self, key, dictionary[key])
-      for key in kwargs:
-          setattr(self, key, kwargs[key])
+    for dictionary in data:
+      for key in dictionary:
+        setattr(self, key, dictionary[key])
+    for key in kwargs:
+      setattr(self, key, kwargs[key])
   
+  #send whole self
   def sendParam():
-    #send whole self
     pass
     
+  # Save all changes to exeperiment paradigm to the yaml
   def saveExperiment():
     pass
 
-# This calss defines how to update/ change the force thresholds required 
+    
+# This class defines how to update/ change the force thresholds required 
 # and     
 class ForceParam(Experiment):
   def __init__(self):
