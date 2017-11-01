@@ -29,7 +29,7 @@ with open('filename.yaml') as yamlFile:
 
 
 # Saving yaml data
-with open('filename.yaml') as yamlFile:
+with open('setParams.yaml') as yamlFile:
   yaml.dump(data, yamlFile)
 
 # Main class, manages sending appropriate updates when necessary
