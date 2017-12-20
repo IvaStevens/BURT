@@ -37,7 +37,24 @@ int atoiOrParse(char *ch)
 
 
 /**
-  This is implemented dumb...
+ Send message to Executive via Dragonfly
+ */
+void sendDragonFly()
+{
+  //TODO
+  //CMessage trial_input_M( MT_TRIAL_INPUT);
+  //trial_input_M.SetData( &trial_input_data, sizeof(trial_input_data));
+  //mod.SendMessageDF( &trial_input_M);
+}
+
+
+/**
+  Update parameters for a target for the next reach
+  
+  @sends trial_input_data msg
+  
+  @param str the char array containing the Update msg and the required target parameters
+  @param delim the char array containing the message delimiters
 */
 void updateTarget(char str[], char delim[])
 {
@@ -69,7 +86,7 @@ void updateTarget(char str[], char delim[])
     counter++;
   }
   
-  // Error sumbitting parameters
+  // Error submitting parameters
   if (!validInp || counter < nParams - 1)
   {
     cout << "Invalid parameters given" << endl;
@@ -82,10 +99,34 @@ void updateTarget(char str[], char delim[])
 
 
 /**
+  Update reward value
+  
+  @param str the char array containing the Update msg
+  @param delim the char array containing the message delimiters
+ */
+void rewardSet(char str[], char delim[])
+{
+  char *tok = strtok(str, delim);
+  if (tok != NULL) {
+    cout << "Updating Reward parameters!" << endl;
+    return;
+  }
+  cout << "Invalid parameters given" << endl;
+}
+
+
+/**
   Allows user to send messages via Dragonfly to the Executive module.
  */
 int main()
 {
+  // Connect to Dragonfly
+  try 
+	{
+		Dragonfly_Module mod( 0, 0); // change the numbers here...
+		mod.ConnectToMMM();
+  }
+  
   char msg[25], msgTemp[25], loadMsg[5];
   bool ready = false;
   bool running = true;
@@ -119,8 +160,8 @@ int main()
             "Send Executive message:\n"
             "TYPE, params... \n\n"
             
-            "Type Defintions:\n"
-            "1. CONTROL - control BURT postitoning manually\n"
+            "Type Definitions:\n"
+            "1. CONTROL - control BURT positioning manually\n"
             "2. FREEZE - freeze BURT in place\n"
             "3. HOME - move BURT back to home position\n"
             "4. REPEAT - repeat current trial\n"

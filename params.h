@@ -29,8 +29,28 @@ enum DIR {UP, UP_RIGHT, RIGHT, DOWN_RIGHT, DOWN, DOWN_LEFT, LEFT, UP_LEFT};
 template <>
 EnumParser<DIR>::EnumParser()
 {
-  //TODO
+  enumMap["UP"] = 1;
+  enumMap["UP_RIGHT"] = 2;
+  enumMap["RIGHT"] = 3;
+  enumMap["DOWN_RIGHT"] = 4;
+  enumMap["DOWN"] = 5;
+  enumMap["DOWN_LEFT"] = 6;
+  enumMap["LEFT"] = 7;
+  enumMap["UP_LEFT"] = 8;
 }
+
+enum STATES {START, FORCE_RAMP, FORCE_HOLD, TARGET_MOVE, TARGET_HOLD, RESET};
+template <>
+EnumParser<STATES>::EnumParser()
+{
+  enumMap["START"] = 1;
+  enumMap["FORCE_RAMP"] = 2;
+  enumMap["FORCE_HOLD"] = 3;
+  enumMap["TARGET_MOVE"] = 4;
+  enumMap["TARGET_HOLD"] = 5;
+  enumMap["RESET"] = 6;
+}
+
 
 enum XorYorZ {X, Y, Z};
 template <>
